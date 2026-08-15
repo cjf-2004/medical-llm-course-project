@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+.cache/
+*.safetensors
+*.bin
+*.pt
+*.pth
+*_model_output/
+faiss_index*/
+AD_data/
+models/
+resources/

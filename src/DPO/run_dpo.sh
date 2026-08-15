@@ -1,0 +1,17 @@
+CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-0} python run_dpo.py \
+    --model_name_or_path "${MODEL_PATH:?set MODEL_PATH}" \
+    --tokenizer_name_or_path "${TOKENIZER_PATH:-$MODEL_PATH}" \
+    --dataset_name "${DPO_DATASET_PATH:?set DPO_DATASET_PATH}" \
+    --dataset_cache_dir "${DPO_CACHE_DIR:-./.cache}" \
+    --output_dir "./dpo_model_output" \
+    --peft_path "${PEFT_PATH:?set PEFT_PATH}" \
+    --per_device_train_batch_size 2 \
+    --gradient_accumulation_steps 32 \
+    --num_train_epochs 1 \
+    --learning_rate 5e-7 \
+    --fp16 True \
+    --beta 0.1 \
+    --lora_rank 8 \
+    --lora_alpha 32 \
+    --lora_dropout 0.1 \
+    --trainable "q_proj,v_proj,k_proj,o_proj,gate_proj,down_proj,up_proj"
